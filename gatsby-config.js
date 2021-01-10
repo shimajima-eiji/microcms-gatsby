@@ -30,5 +30,21 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-  ],
+
+    // ---------- microCms ----------  ここから
+    {
+      resolve: "gatsby-source-microcms",
+      options: {
+        apiKey: 'a7d16e82-eba2-4d91-9a92-ca80e89411ea',
+        serviceId: 'diary',
+        apis: [ {
+          endpoint: 'main',
+          query: {
+            limit: 100,
+          },
+        } ],
+      },
+    },
+    // ---------- microCms ---------- ここまで  ],
+  ]
 }
