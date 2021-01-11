@@ -21,8 +21,19 @@ GATSBY_SERVICE_ID=(Service ID)
 そのため、API名を書き換えるとコードを変更する必要があるため、APIを変更したい場合はprivateリポジトリを作ると良い。
 
 ここでは、ソースコードを変えたくないのでAPI名はMainで統一しているが、任意で設定したい場合は該当するJSファイル全ての`allMicrocmsMain`のMainを全部変更する。<BR>
-`find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public -prune -o -type d -name .cache -prune | xargs sed -i.bak -e '-s/Main/(変更)/g'`掛けて置き換えると楽。<BR>
-念の為、`find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public -prune -o -type d -name .cache -prune | xargs grep -n allMicrocmsMain 2>/dev/null`などで確認しておくようにしよう。
+
+```
+find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public -prune -o -type d -name .cache -prune | xargs sed -i.bak -e '-s/Main/(変更)/g'
+```
+
+掛けて置き換えると楽。<BR>
+念の為、
+
+```
+find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public -prune -o -type d -name .cache -prune | xargs grep -n allMicrocmsMain 2>/dev/null
+```
+
+などで確認しておくようにしよう。
 
 よくわからない場合は、microCMSでAPI名を作る時は`main`のみ使おう。
 
