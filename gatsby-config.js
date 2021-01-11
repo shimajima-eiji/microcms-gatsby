@@ -1,8 +1,12 @@
+// dotenv: https://qiita.com/xrxoxcxox/items/4e337b96fc9017b3771c
+require( "dotenv" ).config()
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `インターネット老人おぢさん　のむらやごろう`,
+    description: `元CEOなのにフロントエンドを触らなさすぎて若手にバカにされないために頑張るおっさんの独学プログラミング奮闘記`,
+    author: `@nomuraya`,
+    siteUrl: `https://nomuraya-diary.netlify.app`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -30,21 +34,105 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
-
-    // ---------- microCms ----------  ここから
     {
-      resolve: "gatsby-source-microcms",
+      resolve: "gatsby-source-microcms", // FYI: https://qiita.com/akifumiyoshimu/items/ecb07219185c43cecfec
       options: {
-        apiKey: 'a7d16e82-eba2-4d91-9a92-ca80e89411ea',
-        serviceId: 'diary',
+        apiKey: process.env.GATSBY_API_KEY, // dotenv
+        serviceId: process.env.GATSBY_SERVICE_ID, // dotenv
         apis: [ {
-          endpoint: 'main',
+          endpoint: "main",
           query: {
             limit: 100,
           },
         } ],
       },
     },
-    // ---------- microCms ---------- ここまで  ],
-  ]
+    {
+      resolve: `gatsby-plugin-canonical-urls`, // FYI: https://qiita.com/atomyah/items/69028992eacf28d92957
+      options: {
+        siteUrl: `https://nomuraya-diary.netlify.app`,
+        stripQueryString: true,
+      },
+    },
+    `gatsby-plugin-sitemap`,  // FYI: https://qiita.com/atomyah/items/69028992eacf28d92957
+    {
+      resolve: 'gatsby-plugin-robots-txt', // FYI: https://qiita.com/atomyah/items/69028992eacf28d92957
+      options: {
+        host: 'https://nomuraya-diary.netlify.app',
+        sitemap: 'https://nomuraya-diary.netlify.app/sitemap.xml',
+        policy: [ { userAgent: '*', allow: '/' } ]
+      }
+    },
+    `gatsby-plugin-offline`,  // https://webcraftlog.net/gatsby-seo-settings/
+    {
+      resolve: `gatsby-plugin-manifest`, // https://webcraftlog.net/gatsby-seo-settings/
+      options: {
+        name: "インターネット老人おじさん",
+        short_name: "ネット老人おぢ",
+        theme_color: "#2196f3",
+        background_color: "#2196f3",
+        start_url: "/",
+        display: `standalone`,
+        icon: `src/images/gatsby-icon.png`,
+        icons: [
+          {
+            src: `icons/icon-72x72.png`,
+            sizes: `72x72`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-96x96.png`,
+            sizes: `96x96`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-128x128.png`,
+            sizes: `128x128`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-144x144.png`,
+            sizes: `144x144`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-152x152.png`,
+            sizes: `152x152`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-192x192.png`,
+            sizes: `192x192`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-384x384.png`,
+            sizes: `384x384`,
+            type: `image/png`
+          },
+          {
+            src: `icons/icon-512x512.png`,
+            sizes: `512x512`,
+            type: `image/png`
+          },
+        ]
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-next-seo',
+      options: {
+        openGraph: {
+          type: 'website',
+          locale: 'ja_JP',
+          url: 'https://nomuraya-diary.netlify.app',
+          site_name: 'SiteName',
+        },
+        twitter: {
+          handle: '@elder_uncle',
+          site: '@elder_uncle',
+          cardType: 'summary_large_image',
+        },
+      },
+    },
+  ],
 }
