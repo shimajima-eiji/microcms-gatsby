@@ -2,21 +2,40 @@ import React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
 
-export default IndexPage
+export default ( { data } ) =>
+{
+  return (
+    <Layout>
+      <SEO title="Home" />
+      { data.allMicrocmsMain.edges.map( ( { node } ) =>
+      {
+        return (
+          <article className={ "blog_list " + node.mainId }>
+            <h3><Link to={ "/" + node.mainId }>{ node.title }</Link></h3>
+            <div>{ node.publishedAt }</div>
+            <div>{ node.body.substr( 0, 100 ) }......</div>
+            <div><Link to={ "/" + node.mainId }>続きを読む</Link></div>
+          </article>
+        );
+      } ) }
+    </Layout>
+  )
+}
+
+export const query = graphql`
+query {
+    allMicrocmsMain (sort: {order: DESC, fields: publishedAt}) {
+        edges {
+            node {
+                mainId
+                title
+                body
+                publishedAt(formatString: "YYYY年MM月DD日")
+            }
+        }
+    }
+  }
+`;

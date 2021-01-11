@@ -3,19 +3,24 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
 
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+
 export default ( { data } ) =>
 {
-  return ( <>
-    <h1>blogList</h1>
-    <ul className="blog_list">
-      { data.allMicrocmsMain.edges.map( ( { node } ) =>
-      {
-        return (
-          <li><Link to={ `/${node.mainId}` }>{ node.title }</Link></li>
-        );
-      } ) }
-    </ul>
-  </>
+  return (
+    <Layout>
+      <SEO title="Home"></SEO>
+      <h1>記事一覧</h1>
+      <ul className="blog_list">
+        { data.allMicrocmsMain.edges.map( ( { node } ) =>
+        {
+          return (
+            <li><Link to={ "/" + node.mainId }>{ node.title }</Link></li>
+          );
+        } ) }
+      </ul>
+    </Layout>
   )
 }
 

@@ -3,8 +3,8 @@ require( "dotenv" ).config()
 
 module.exports = {
   siteMetadata: {
-    title: `インターネット老人おぢさん　のむらやごろう`,
-    description: `元CEOなのにフロントエンドを触らなさすぎて若手にバカにされないために頑張るおっさんの独学プログラミング奮闘記`,
+    title: `インターネット老人おぢさん`,
+    description: `元CEOののむらやごろうがフロントエンドを触らなさすぎて若手にバカにされないために頑張るおっさんの独学プログラミング奮闘記`,
     author: `@nomuraya`,
     siteUrl: `https://nomuraya-diary.netlify.app`
   },
@@ -133,6 +133,33 @@ module.exports = {
           cardType: 'summary_large_image',
         },
       },
+    },
+    {
+      resolve: `gatsby-plugin-sass`, // https://qiita.com/takeshi_du/items/cdc12f8056f2987c3407
+      options: {
+        outputStyle: 'compressed', // nested, expanded, compact, compressed,
+      },
+    },
+    `gatsby-plugin-twitter`,  // https://takumon.com/2018/10/07/
+    {
+      resolve: `gatsby-plugin-google-adsense`,  // https://takumon.com/2018/10/07/
+      options: {
+        publisherId: process.env.GATSBY_ADSENSE, // dotenv
+      },
+    },
+    {
+      resolve: "gatsby-transformer-remark",  // https://takumon.com/2018/10/07/
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-embed-youtube",  // https://takumon.com/2018/10/07/
+            options: {　// 固定サイズにする場合に指定
+              width: 800,
+              height: 400
+            }
+          }
+        ]
+      }
     },
   ],
 }

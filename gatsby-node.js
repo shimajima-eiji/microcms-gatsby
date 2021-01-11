@@ -6,12 +6,7 @@ exports.createPages = async ( { graphql, actions } ) =>
   const result = await graphql(
     `
     {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-      allMicrocmsMain {
+      allMicrocmsMain (sort: {order: DESC, fields: publishedAt}) {
         edges {
           node {
             mainId
@@ -29,13 +24,19 @@ exports.createPages = async ( { graphql, actions } ) =>
     throw result.errors;
   }
 
-  result.data.allMicrocmsMain.edges.forEach( ( post, index ) =>
+  const pages = result.data.allMicrocmsMain.edges;
+  pages.forEach( ( post, index ) =>
   {
+    const next = index === 0 ? null : pages[ index - 1 ].node
+    const prev = index === pages.length - 1 ? null : pages[ index + 1 ].node
     createPage( {
       path: post.node.mainId,
       component: path.resolve( './src/templates/blog-post.js' ),
       context: {
+        slug: index,
         post: post.node,
+        prev,
+        next,
       },
     } );
   } );

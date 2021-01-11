@@ -1,14 +1,20 @@
 import React from "react"
-import { Link } from "gatsby"
 
-export default function Post ( { pageContext } )
+import Layout from "../components/layout"
+import SEO from "../components/seo"
+import PAGINATION from "../components/pagination"
+
+export default ( { pageContext } ) =>
 {
   const { title, body } = pageContext.post;
   return (
-    <>
-      <h1>{ title }</h1>
-      <div dangerouslySetInnerHTML={ { __html: body } } />
-      <Link to="/blogList">トップに戻る</Link>
-    </>
+    <Layout>
+      <SEO title="Home"></SEO>
+      <article>
+        <h1>{ title }</h1>
+        <div dangerouslySetInnerHTML={ { __html: body } } />
+      </article>
+      <PAGINATION prev={ pageContext.prev } next={ pageContext.next }></PAGINATION>
+    </Layout>
   )
 }
