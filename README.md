@@ -38,9 +38,12 @@ find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public
 
 よくわからない場合は、microCMSでAPI名を作る時は`main`のみ使おう。
 
-## 上級者向け
+# ヒント
+## Gatsbyを使ってmicroCMSを運営する資料・情報がない
+（ピンポイントでmicroCMSを使う理由がないのでそういう資料は）ないです。
+
 要はGraphQLで取得できる「allMicrocmsMain」がそれぞれ活用しているAPIサーバーの設定に変更できれば良い。<BR>
-なのでこのソースはmicroCMS以外で活用することは可能。
+なのでこのソースはmicroCMS以外で活用することは可能だし、microCMS以外のヘッドレスCMSの情報を参照すれば解決できる可能性は高い。
 
 ## なぜMarkdown方式を採用しないのか
 これはGatsbyとかmicroCMSとかは関係なく、
@@ -52,3 +55,109 @@ find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public
 上記の、無料ブログでも出来る3つの基本的な要件を満たすために、ローカルで記事を書く方式を採用していない。<BR>
 また、取得したjsonをどこかに置けば（それこそGithubとか）バージョン管理やバックアップも取れる。<BR>
 この点はローカルでMarkdownを書く方式と同じであるため、全くデメリットにならない。
+
+## 手っ取り早くビュー（画面プレビュー設定）がしたい。
+私のブログのレイアウトで良いなら、
+
+```
+https://nomuraya-diary.netlify.app/{CONTENT_ID}?draftKeys={DRAFT_KEY}
+```
+
+を使うと良い。<BR>
+microCMSを使っている人のサイトなら同じようにプレビューできるはず。<BR>
+ただし、見るだけが目的なのでやりすぎないようにしよう。自分でモック環境を作ること。
+
+## スキーマの設定が知りたい
+2021/01/12 時点の最新状態。ソースコードのアップデートが早いので、もしかしたら使えなくなっているかもしれないので、[issue](https://github.com/shimajima-eiji/microcms-gatsby/issues/new)辺りで声をかけてほしい。<br>
+なるべく早く対応できるようにしたい。
+
+```
+{
+  "apiFields": [
+    {
+      "idValue": "4ONTyOnc5",
+      "fieldId": "category",
+      "name": "カテゴリー",
+      "kind": "select",
+      "description": "表示させたいブログを指定する。（運用メモ）Netlifyで展開している数だけ選択肢に追加する",
+      "required": true,
+      "selectItems": [
+        {
+          "id": "XGugeAPT0",
+          "value": "diary"
+        }
+      ],
+      "multipleSelect": false
+    },
+    {
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "description": "Twitterの文字数制限に引っかからないように。6W2Hを意識する。",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "body",
+      "name": "コンテンツ",
+      "kind": "textArea",
+      "description": "マークダウン記法など特殊なコマンドやHTMLタグは使えない。URLやスクリプトは直張りすること",
+      "required": true
+    },
+    {
+      "fieldId": "tag",
+      "name": "ハッシュタグ",
+      "kind": "select",
+      "description": "Twitterなどでシェアする時に使う",
+      "selectItems": [],
+      "multipleSelect": true
+    },
+    {
+      "fieldId": "discription",
+      "name": "キャッチコピー",
+      "kind": "text",
+      "description": "discriptionタグやgoogle検索で表示される内容。120文字まで",
+      "textSizeLimitValidation": {
+        "textSize": {
+          "min": null,
+          "max": 120
+        }
+      },
+      "isUnique": false
+    },
+    {
+      "fieldId": "picturl",
+      "name": "扉絵",
+      "kind": "media"
+    },
+    {
+      "fieldId": "prev",
+      "name": "前提となる記事ID",
+      "kind": "text",
+      "description": "シリーズ物の場合は設定すると指定した記事を呼び出せる。未設定なら時系列で一つ前の記事を表示する",
+      "patternMatchValidation": {
+        "regexp": {
+          "pattern": "[0-9a-z]",
+          "flags": null
+        }
+      },
+      "isUnique": false
+    },
+    {
+      "fieldId": "next",
+      "name": "続きの記事ID",
+      "kind": "text",
+      "description": "シリーズ物の場合は設定すると指定した記事を呼び出せる。未設定なら時系列で一つ後の記事を表示する",
+      "patternMatchValidation": {
+        "regexp": {
+          "pattern": "[0-9a-z]",
+          "flags": null
+        }
+      },
+      "isUnique": false
+    }
+  ],
+  "customFields": []
+}
+
+```
