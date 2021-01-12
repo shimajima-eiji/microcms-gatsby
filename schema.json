@@ -1,0 +1,97 @@
+{
+  "apiFields": [
+    {
+      "idValue": "4ONTyOnc5",
+      "fieldId": "category",
+      "name": "カテゴリー",
+      "kind": "select",
+      "description": "表示させたいブログを指定する。（運用メモ）Netlifyで展開している数だけ選択肢に追加する",
+      "required": true,
+      "selectItems": [
+        {
+          "id": "XGugeAPT0",
+          "value": "diary"
+        }
+      ],
+      "multipleSelect": false
+    },
+    {
+      "fieldId": "title",
+      "name": "タイトル",
+      "kind": "text",
+      "description": "Twitterの文字数制限に引っかからないように。6W2Hを意識する。",
+      "required": true,
+      "isUnique": false
+    },
+    {
+      "fieldId": "body",
+      "name": "コンテンツ",
+      "kind": "textArea",
+      "description": "HTMLタグやスクリプトは呼び出し元で削除されるが、markedに対応するマークダウンは使える",
+      "required": true
+    },
+    {
+      "fieldId": "tags",
+      "name": "ハッシュタグ",
+      "kind": "select",
+      "description": "Twitterなどでシェアする時に使う",
+      "required": true,
+      "selectItems": [
+        {
+          "id": "ZwDcaDLCc",
+          "value": "（未選択）"
+        }
+      ],
+      "multipleSelect": true
+    },
+    {
+      "fieldId": "description",
+      "name": "キャッチコピー",
+      "kind": "text",
+      "description": "discriptionタグやgoogle検索で表示される内容。120文字まで",
+      "required": true,
+      "textSizeLimitValidation": {
+        "textSize": {
+          "min": null,
+          "max": 120
+        }
+      },
+      "isUnique": false
+    },
+    {
+      "fieldId": "picturl",
+      "name": "扉絵",
+      "kind": "media",
+      "required": true
+    },
+    {
+      "fieldId": "prev",
+      "name": "前提となる記事ID",
+      "kind": "text",
+      "description": "シリーズ物の場合は設定すると指定した記事を呼び出せる。0を指定すると時系列で一つ前の記事を表示する",
+      "required": true,
+      "patternMatchValidation": {
+        "regexp": {
+          "pattern": "[0-9a-z]",
+          "flags": null
+        }
+      },
+      "isUnique": false
+    },
+    {
+      "fieldId": "next",
+      "name": "続きの記事ID",
+      "kind": "text",
+      "description": "シリーズ物の場合は設定すると指定した記事を呼び出せる。0を指定すると時系列で一つ後の記事を表示する",
+      "required": true,
+      "patternMatchValidation": {
+        "regexp": {
+          "pattern": "[0-9a-z]",
+          "flags": null
+        }
+      },
+      "isUnique": false
+    }
+  ],
+  "customFields": []
+}
