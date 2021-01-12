@@ -49,6 +49,9 @@ find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public
 GatsbyかGraphQLか分からないが、何かの原因でNullのデータを参照しようとするとCreatePageに失敗する。<BR>
 開発環境で最新のデータが取れない（たぶん`gatsby build`なら大丈夫）のは困るので、microCMSに登録するデータにNullを認めないようにしよう。
 
+たとえば、Nullに相当する項目には0や使わない任意の記号をいれたり、Nullだと分かる書き方をする方法が考えられる。
+データ型の違いもあるので、判定時は厳密に行うこと。`===`や`!==`が望ましい。
+
 ## なぜMarkdown方式を採用しないのか
 これはGatsbyとかmicroCMSとかは関係なく、
 
