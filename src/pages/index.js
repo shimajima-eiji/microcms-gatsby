@@ -48,7 +48,7 @@ export default ( { data } ) =>
           return (
             <article className={ Style.blog_list + " " + node.mainId }>
               <h3><Link to={ "/" + node.mainId }>{ node.title }</Link>　<span>最終更新:{ node.updatedAt }（初公開:{ node.publishedAt }）</span></h3>
-              <div>{ ( node.description ) ? node.description : sumarrize( node.body ) }</div>
+              <div>{ ( node.description !== "0" ) ? node.description : sumarrize( node.body ) }</div>
               <div><Link to={ "/" + node.mainId }>続きを読む</Link></div>
             </article>
           );

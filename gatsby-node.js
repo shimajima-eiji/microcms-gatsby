@@ -58,7 +58,7 @@ exports.createPages = async ( { graphql, actions } ) =>
         ? pages[ pages.length - 1 ]
         : pages[ index - 1 ]
 
-    if ( !post.description ) post.description = sumarrize( post.body )
+    if ( post.description !== "0" ) post.description = sumarrize( post.body )
     createPage( {
       path: post.mainId,
       component: path.resolve( './src/templates/blog-post.js' ),
