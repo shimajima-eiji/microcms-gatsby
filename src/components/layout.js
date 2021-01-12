@@ -1,13 +1,9 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.com/docs/use-static-query/
- */
+// FYI: http://w-d-l.net/html__entities/
 
 import React from "react"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import 'fontsource-kosugi'  // fontsource-○○で持ってこれる。 FYI: https://fonts.google.com/?subset=japanese
 
 import Header from "./header"
 import "./layout.css"
@@ -19,6 +15,8 @@ const Layout = ( { children } ) =>
       site {
         siteMetadata {
           title
+          author
+          twitterUsername
         }
       }
     }
@@ -38,7 +36,7 @@ const Layout = ( { children } ) =>
         <footer style={ {
           marginTop: `2rem`
         } }>
-          &copy; 2020-{ new Date().getFullYear() } goro nomuraya(<Link to="https://twitter.com/elder_uncle">@elder_uncle</Link>)
+          &copy; 2020-{ new Date().getFullYear() } { data.site.siteMetadata.author }(<Link to={ "https://twitter.com/" + data.site.siteMetadata.twitterUsername }>&#064;{ data.site.siteMetadata.twitterUsername }</Link>)
         </footer>
       </div>
     </>

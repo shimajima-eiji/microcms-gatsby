@@ -5,8 +5,12 @@ module.exports = {
   siteMetadata: {
     title: `インターネット老人おぢさん`,
     description: `元CEOののむらやごろうがフロントエンドを触らなさすぎて若手にバカにされないために頑張るおっさんの独学プログラミング奮闘記`,
-    author: `@nomuraya`,
-    siteUrl: `https://nomuraya-diary.netlify.app`
+    author: `のむらやごろう`,
+    siteUrl: `https://nomuraya-diary.netlify.app`,
+    url: `https://nomuraya-diary.netlify.app`,
+    image: `/static/icons/icon-96x96.png`,
+    twitterUsername: `elder_uncle`,
+    lang: `ja`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -34,6 +38,7 @@ module.exports = {
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
+    `gatsby-plugin-image`, // https://ebisu.com/note/new-gatsby-image/
     {
       resolve: "gatsby-source-microcms", // FYI: https://qiita.com/akifumiyoshimu/items/ecb07219185c43cecfec
       options: {
@@ -73,7 +78,7 @@ module.exports = {
         background_color: "#2196f3",
         start_url: "/",
         display: `standalone`,
-        icon: `src/images/gatsby-icon.png`,
+        icon: `src/images/icon.png`,
         icons: [
           {
             src: `icons/icon-72x72.png`,
@@ -157,7 +162,13 @@ module.exports = {
               width: 800,
               height: 400
             }
-          }
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,  // https://takumon.com/2018/10/07/
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
         ]
       }
     },

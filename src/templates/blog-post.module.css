@@ -1,0 +1,14 @@
+* {
+  font-family: kosugi;
+}
+
+span {
+  font-size: 16px;
+}
+
+.container {
+  background-color: lightblue;
+  border: solid 2px;
+  border-radius: 2vh;
+  padding: 10px;
+}
