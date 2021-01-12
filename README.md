@@ -45,6 +45,10 @@ find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public
 要はGraphQLで取得できる「allMicrocmsMain」がそれぞれ活用しているAPIサーバーの設定に変更できれば良い。<BR>
 なのでこのソースはmicroCMS以外で活用することは可能だし、microCMS以外のヘッドレスCMSの情報を参照すれば解決できる可能性は高い。
 
+## 仕様・罠
+GatsbyかGraphQLか分からないが、何かの原因でNullのデータを参照しようとするとCreatePageに失敗する。<BR>
+開発環境で最新のデータが取れない（たぶん`gatsby build`なら大丈夫）のは困るので、microCMSに登録するデータにNullを認めないようにしよう。
+
 ## なぜMarkdown方式を採用しないのか
 これはGatsbyとかmicroCMSとかは関係なく、
 
