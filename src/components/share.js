@@ -1,3 +1,5 @@
+// FYI: https://www.corylog.com/gatsby/gatsby022/
+
 import React from "react";
 import
 {

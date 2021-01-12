@@ -30,6 +30,7 @@
     "gatsby-source-microcms": "^1.0.1",
     "gatsby-transformer-remark": "^2.14.0",
     "gatsby-transformer-sharp": "^2.10.0",
+    "marked": "^1.2.7",
     "node-sass": "^5.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",

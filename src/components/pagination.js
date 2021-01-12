@@ -1,5 +1,4 @@
 import React from "react"
-import PropTypes from "prop-types"
 import { Link } from "gatsby"
 
 import Style from "./pagination.module.css"
@@ -15,11 +14,6 @@ const Pagination = ( { prev, next } ) =>
       </ul>
     </>
   );
-}
-
-Pagination.propTypes = {
-  prev: PropTypes.node.isRequired,
-  next: PropTypes.node.isRequired,
 }
 
 export default Pagination

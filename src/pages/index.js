@@ -20,7 +20,7 @@ export default ( { data } ) =>
 {
   return (
     <Layout>
-      <SEO />
+      <SEO title="記事一覧" />
       <aside className={ Style.profile }>
         <div className={ Style.profile_image }>
           <h1>Author</h1>
@@ -43,7 +43,7 @@ export default ( { data } ) =>
       </aside>
       <section className={ Style.container }>
         <h1 className={ Style.information }>記事は最新が上に来ます</h1>
-        { data.allMicrocmsMain.edges.map( ( { node } ) =>
+        { data.allMicrocmsMain.nodes.map( node =>
         {
           return (
             <article className={ Style.blog_list + " " + node.mainId }>
@@ -54,7 +54,7 @@ export default ( { data } ) =>
           );
         } ) }
       </section>
-    </Layout>
+    </Layout >
   )
 }
 
@@ -69,15 +69,13 @@ query {
     }
   }
   allMicrocmsMain (sort: {order: DESC, fields: publishedAt}) {
-    edges {
-      node {
-        mainId
-        title
-        body
-        updatedAt(formatString: "YYYY/M/D HH:mm:SS")
-        publishedAt(formatString: "YYYY/M/D HH:mm:SS")
-        }
-      }
+    nodes {
+      mainId
+      title
+      body
+      updatedAt(formatString: "YYYY/M/D HH:mm:SS")
+      publishedAt(formatString: "YYYY/M/D HH:mm:SS")
     }
   }
+}
 `;
