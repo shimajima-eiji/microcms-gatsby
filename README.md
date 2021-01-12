@@ -42,3 +42,13 @@ find . -name "*.js" -o -type d -name node_modules -prune -o -type d -name public
 要はGraphQLで取得できる「allMicrocmsMain」がそれぞれ活用しているAPIサーバーの設定に変更できれば良い。<BR>
 なのでこのソースはmicroCMS以外で活用することは可能。
 
+## なぜMarkdown方式を採用しないのか
+これはGatsbyとかmicroCMSとかは関係なく、
+
+- どこからでも
+- PCでもスマホでも
+- 記事を書いたら即反映される
+
+上記の、無料ブログでも出来る3つの基本的な要件を満たすために、ローカルで記事を書く方式を採用していない。<BR>
+また、取得したjsonをどこかに置けば（それこそGithubとか）バージョン管理やバックアップも取れる。<BR>
+この点はローカルでMarkdownを書く方式と同じであるため、全くデメリットにならない。
