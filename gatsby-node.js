@@ -26,8 +26,15 @@ exports.createPages = async ( { graphql, actions } ) =>
       allMicrocmsMain (sort: {order: DESC, fields: publishedAt}) {
         nodes {
           mainId
-          body
           title
+          childConvertHtml {
+            convertedHtml
+          }
+          tags
+          description
+          door {
+            url
+          }
           prev
           next
           updatedAt(formatString: "YYYY年MM月DD日 HH時mm分SS秒")
@@ -58,10 +65,10 @@ exports.createPages = async ( { graphql, actions } ) =>
         ? pages[ pages.length - 1 ]
         : pages[ index - 1 ]
 
-    if ( post.description !== "0" ) post.description = sumarrize( post.body )
+    if ( post.description !== "0" ) post.description = sumarrize( post.childConvertHtml.convertedHtml )
     createPage( {
       path: post.mainId,
-      component: path.resolve( './src/templates/blog-post.js' ),
+      component: path.resolve( 'src/templates/blog-post.js' ),
       context: {
         slug: index,
         post: post,

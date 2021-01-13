@@ -6,6 +6,8 @@ span {
   font-size: 16px;
 }
 
+/* 本文 */
+
 .container {
   background-color: lightblue;
   border: solid 2px;
@@ -13,6 +15,24 @@ span {
   padding: 10px;
 }
 
-/* 本文 */
+.container h1, .container h2 {
+  padding: 1rem 2rem;
+  border: 3px solid #000;
+  border-radius: 50vw 0 0 50vw;
+  background-color: yellowgreen;
+  font-size: 5vh;
+}
 
-.contents {}
+.container h1:first-letter, .container h2:first-letter {
+  font-size: 150%;
+  border: 1px solid green;
+  border-radius: 10vw;
+  background-color: lime;
+}
+
+.contents img {
+  max-width: 640px;
+  max-height: 480px;
+  width: auto;
+  height: auto;
+}

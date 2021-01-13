@@ -53,6 +53,18 @@ module.exports = {
       },
     },
     {
+      resolve: '@mako-tos/gatsby-transformer-for-microcms',  // FYI: https://qiita.com/mako-tos/items/aa2cf761fc082d32ac71
+      options: {
+        mediaType: 'MicrocmsMain', // 必須 string 型
+        field: 'body', // 必須 string 型
+        useHljs: true, // 任意 boolean 型
+        image: {
+          sizes: '80vw', // 任意 string 型
+          loading: 'auto', // 任意 string 型
+        },
+      },
+    },
+    {
       resolve: `gatsby-plugin-canonical-urls`, // FYI: https://qiita.com/atomyah/items/69028992eacf28d92957
       options: {
         siteUrl: `https://nomuraya-diary.netlify.app`,
@@ -140,37 +152,44 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-sass`, // https://qiita.com/takeshi_du/items/cdc12f8056f2987c3407
-      options: {
-        outputStyle: 'compressed', // nested, expanded, compact, compressed,
-      },
-    },
-    `gatsby-plugin-twitter`,  // https://takumon.com/2018/10/07/
-    {
       resolve: `gatsby-plugin-google-adsense`,  // https://takumon.com/2018/10/07/
       options: {
         publisherId: process.env.GATSBY_ADSENSE, // dotenv
       },
     },
     {
-      resolve: "gatsby-transformer-remark",  // https://takumon.com/2018/10/07/
+      resolve: `gatsby-plugin-alias-imports`,  // https://webcraftlog.net/best-gatsbyjs-plugins/
       options: {
-        plugins: [
-          {
-            resolve: "gatsby-remark-embed-youtube",  // https://takumon.com/2018/10/07/
-            options: {　// 固定サイズにする場合に指定
-              width: 800,
-              height: 400
-            }
-          },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,  // https://takumon.com/2018/10/07/
-            options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
-            },
-          },
-        ]
+        alias: {
+          "@src": "src",
+          "@components": "src/components",
+          "@layouts": "src/layouts",
+          "@pages": "src/pages",
+          "@sass": "src/sass",
+          "@templates": "src/templates",
+          "@posts": "content/posts",
+        },
+        extensions: [ "js", "jsx", "ts", "tsx" ],
       }
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`, // https://webcraftlog.net/best-gatsbyjs-plugins/
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: false,
+        minimum: 0.08,
+        easing: 'linear',
+        positionUsing: '',
+        speed: 200,
+        trickle: true,
+        trickleSpeed: 200,
+        barSelector: '[role="bar"]',
+        spinnerSelector: '[role="spinner"]',
+        parent: 'body',
+        template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+      },
     },
   ],
 }

@@ -55,6 +55,15 @@ function SEO ( { title, description, image, lang } )
       <meta name="twitter:title" content={ seo.title } />
       <meta name="twitter:description" content={ seo.description } />
       <meta name="twitter:image" content={ seo.image } />
+      {/* https://qiita.com/github0013@github/items/90fd3f03c678ba36f016 */ }
+      <link rel="apple-touch-icon" href="icons/icon-48x48.png" sizes="48x48" />
+      <link rel="apple-touch-icon" href="icons/icon-72x72.png" sizes="72x72" />
+      <link rel="apple-touch-icon" href="icons/icon-96x96.png" sizes="96x96" />
+      <link rel="apple-touch-icon" href="icons/icon-144x144.png" sizes="144x144" />
+      <link rel="apple-touch-icon" href="icons/icon-192x192.png" sizes="192x192" />
+      <link rel="apple-touch-icon" href="icons/icon-256x256.png" sizes="256x256" />
+      <link rel="apple-touch-icon" href="icons/icon-384x384.png" sizes="384x384" />
+      <link rel="apple-touch-icon" href="icons/icon-512x512.png" sizes="512x512" />
     </Helmet>
   )
 }

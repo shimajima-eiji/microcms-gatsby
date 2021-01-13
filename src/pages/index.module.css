@@ -3,26 +3,28 @@
 }
 
 .container {
-  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .profile {
-  width: 25%;
-  float: right;
   border: solid 2px;
+  border-radius: 2vh;
   padding: 10px;
   background-color: lightgoldenrodyellow;
 }
 
-.profile_image {
-  margin-bottom: 10px;
+@media (min-width: 960px) {
+  .contents {
+    max-width: 720px;
+  }
+  .profile {
+    width: 200px;
+  }
 }
 
-.profile:after {
-  /* https://qiita.com/wlcmty/items/1ecf954b60a016d249a4 */
-  content: "";
-  display: block;
-  clear: both;
+.profile_image {
+  margin-bottom: 10px;
 }
 
 .information {
@@ -41,8 +43,16 @@
   border-radius: 2vh;
   padding: 10px;
   margin-bottom: 3px;
+  display: flex;
 }
 
 .blog_list span {
   font-size: 16px;
+}
+
+.blog_list img {
+  max-width: 300px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
 }
