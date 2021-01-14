@@ -151,14 +151,14 @@ module.exports = {
         },
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-adsense`,  // https://takumon.com/2018/10/07/
+    //   options: {
+    //     publisherId: process.env.GATSBY_ADSENSE, // dotenv
+    //   },
+    // },
     {
-      resolve: `gatsby-plugin-google-adsense`,  // https://takumon.com/2018/10/07/
-      options: {
-        publisherId: process.env.GATSBY_ADSENSE, // dotenv
-      },
-    },
-    {
-      resolve: `gatsby-plugin-alias-imports`,  // https://webcraftlog.net/best-gatsbyjs-plugins/
+      resolve: `gatsby-plugin-alias-imports`,  // FYI: https://webcraftlog.net/best-gatsbyjs-plugins/
       options: {
         alias: {
           "@src": "src",

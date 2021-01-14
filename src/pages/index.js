@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import striptags from "striptags"
+import striptags from "striptags"  // FYI: https://github.com/ericnorris/striptags
 import { StaticImage } from "gatsby-plugin-image"  // FYI: https://ebisu.com/note/new-gatsby-image/
 
 import Layout from "@components/layout"
